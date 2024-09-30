@@ -9,7 +9,7 @@ Pre-requisites:
 - Make a .env file by studying the .env.example file and replace all the variables with actual values from your AWS account
 - After that,  build the docker image of both backend and frontend directories.
 - After the images have been built, you need to push them to a Docker registry, I have used DockerHub here.
-- Assign tags to your images in the format : dockerhubusername/<image-name>
+- Assign tags to your images in the format : `dockerhubusername/<image-name>`
 - then push them to docker hub.
 
 - similarly u need to change these names in the user_data in main.tf file so that terraform can pull those images directly from DockerHub.
