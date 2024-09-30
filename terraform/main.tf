@@ -111,10 +111,10 @@ resource "aws_launch_configuration" "api_launch_config" {
     sudo yum update
     sudo service docker start
     echo "${var.dockerhub_password}" | docker login -u "${var.dockerhub_username}" --password-stdin
-    sudo docker pull ${var.dockerhub_username}/todo-backend:latest
-    sudo docker pull ${var.dockerhub_username}/todo-frontend:latest
-    sudo docker run -d -p 8000:8000 --name backend ${var.dockerhub_username}/todo-backend:latest
-    sudo docker run -d -p 3000:3000 --name frontend ${var.dockerhub_username}/todo-frontend:latest
+    sudo docker pull ${var.dockerhub_username}/<image-name>
+    sudo docker pull ${var.dockerhub_username}/<image-name>
+    sudo docker run -d -p 8000:8000 --name backend ${var.dockerhub_username}/<image-name>
+    sudo docker run -d -p 3000:3000 --name frontend ${var.dockerhub_username}/<image-name>
   EOF
 
   lifecycle {

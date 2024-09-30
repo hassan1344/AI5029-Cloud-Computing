@@ -13,11 +13,11 @@ variable "ami_id" {
 
 variable "dockerhub_username" {
   description = "Docker Hub username"
-  default     = "hassan133"
+  default     = "" //Write your docker hub username here
 }
 
 variable "dockerhub_password" {
-  description = "Docker Hub password"
+  description = "Docker Hub password"  //generate a PAT token from docker hub and store it in terraform.tfvars or set it in stdin
   type        = string
   sensitive   = true
 }
