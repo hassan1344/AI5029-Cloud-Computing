@@ -30,4 +30,4 @@ To run the project :
 - run the 'terraform apply' command to provision your infrastructure.
 - Autoscaling is based on CPU utilization on a 75% threshold (scale-out) and 25% (scale-in).
 - Frontend will be running on port 3000 and backend on 8000 (by default - These can be changed)
-- Autoscaling can be triggered by making multiple API requests which can increase the CPU utilization to trigger the scale-out metric.
+- Autoscaling can be triggered by making multiple API requests which can increase the CPU utilization to trigger the scale-out metric. Similarly, if the server is idle, the utilization drops and if upto 25%, the scale-in metric is triggered and extra machines are terminated.
