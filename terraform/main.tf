@@ -1,19 +1,19 @@
 provider "aws" {
-  region = "us-east-1" # Specify your desired AWS region
+  region = "us-east-1"
 }
 
 data "aws_availability_zones" "available" {}
 
-# DynamoDB Table
+# DynamoDB
 resource "aws_dynamodb_table" "todo_list" {
-  name         = "todo-list"       # DynamoDB table name
-  billing_mode = "PAY_PER_REQUEST" # On-demand billing mode
-  hash_key     = "id"              # Partition key
+  name         = "todo-list"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "id"
 
-  # Attribute Definitions (Required by DynamoDB)
+
   attribute {
     name = "id"
-    type = "S" # String type for partition key
+    type = "S" # part. key
   }
 
   tags = {
@@ -26,7 +26,7 @@ output "dynamodb_table_name" {
   value = aws_dynamodb_table.todo_list.name
 }
 
-# VPC
+#VPC
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
@@ -78,14 +78,14 @@ resource "aws_security_group" "alb_sg" {
     from_port   = 8000
     to_port     = 8000
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Allow incoming traffic on port 8000
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Allow incoming traffic on port 8000
+    cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
     from_port   = 0
@@ -126,9 +126,9 @@ resource "aws_launch_configuration" "api_launch_config" {
 resource "aws_autoscaling_group" "api_asg" {
   launch_configuration      = aws_launch_configuration.api_launch_config.id
   vpc_zone_identifier       = aws_subnet.main.*.id
-  min_size                  = 1 # Minimum 1 instance
+  min_size                  = 1
   max_size                  = 5
-  desired_capacity          = 1 # Desired capacity is also 1
+  desired_capacity          = 1
   health_check_type         = "EC2"
   health_check_grace_period = 300
 
@@ -156,7 +156,7 @@ resource "aws_autoscaling_policy" "scale_down_policy" {
   autoscaling_group_name = aws_autoscaling_group.api_asg.id
 }
 
-# CloudWatch Metric Alarms for Scaling
+# CloudWatch Metric
 resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   alarm_name          = "high-cpu-utilization"
   comparison_operator = "GreaterThanOrEqualToThreshold"
