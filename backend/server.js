@@ -68,12 +68,12 @@ app.get("/tasks", async (req, res) => {
 });
 
 app.get("/tasks/:id", async (req, res) => {
-  const { id } = req.params; // Get the id from the URL parameter
+  const { id } = req.params;
 
   const params = {
     TableName: TABLE_NAME,
     Key: {
-      id: id, // Specify the partition key
+      id: id,
     },
   };
 
@@ -90,10 +90,8 @@ app.get("/tasks/:id", async (req, res) => {
 });
 
 app.put("/tasks/:id", async (req, res) => {
-  const { id } = req.params; // Get the id from the URL parameter
-  const { reminder } = req.body; // Get the reminder from the request body
-
-
+  const { id } = req.params;
+  const { reminder } = req.body;
 
   if (reminder === undefined) {
     return res.status(400).json({ error: "Missing required field: reminder" });
@@ -102,20 +100,20 @@ app.put("/tasks/:id", async (req, res) => {
   const params = {
     TableName: TABLE_NAME,
     Key: {
-      id: id, // Specify the partition key
+      id: id,
     },
-    UpdateExpression: "set reminder = :r", // Update expression to modify the reminder field
+    UpdateExpression: "set reminder = :r",
     ExpressionAttributeValues: {
-      ":r": reminder, // Value to set for the reminder field
+      ":r": reminder,
     },
-    ReturnValues: "UPDATED_NEW", // Return the updated item
+    ReturnValues: "UPDATED_NEW",
   };
 
   try {
     const data = await dynamoDb.update(params).promise();
     res.status(200).json({
       message: "Record updated successfully",
-      item: data.Attributes, // Return the updated attributes
+      item: data.Attributes,
     });
   } catch (error) {
     console.error("Error updating record:", error);
@@ -124,12 +122,12 @@ app.put("/tasks/:id", async (req, res) => {
 });
 
 app.delete("/tasks/:id", async (req, res) => {
-  const { id } = req.params; // Get the id from the URL parameter
+  const { id } = req.params;
 
   const params = {
     TableName: TABLE_NAME,
     Key: {
-      id: id, // Specify the partition key
+      id: id,
     },
   };
 
