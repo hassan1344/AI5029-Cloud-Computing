@@ -6,7 +6,7 @@ The purpose of this project is to deploy the infrastruture on AWS using Infrastr
 Pre-requisites: 
 
 - You must have docker on your system
-- Make aa .env file by studying the .env.example file and replace all the variables with actual values from your AWS account
+- Make a .env file by studying the .env.example file and replace all the variables with actual values from your AWS account
 - After that,  build the docker image of both backend and frontend directories.
 - After the images have been built, you need to push them to a Docker registry, I have used DockerHub here.
 - Assign tags to your images in the format : dockerhubusername/<image-name>
