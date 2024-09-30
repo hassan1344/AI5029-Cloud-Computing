@@ -3,6 +3,14 @@
 
 The purpose of this project is to deploy the infrastruture on AWS using Infrastructure as Code (IaC) and fulfill the NIST requirements.
 
+Technologies used : 
+
+- Terraform
+- Docker
+- React.js (For frontend)
+- Node.js (For backend)
+- AWS DynamoDB Database
+
 Pre-requisites: 
 
 - You must have docker on your system
